@@ -1,4 +1,4 @@
-# PDF Knowledge Assistant — RAG-Based Document Q&A
+# PaperPilot - PDF Knowledge Assistant,RAG-Based Document Q&A
 
 A conversational assistant that lets users query information from a PDF through natural-language questions. The project combines document knowledge retrieval, vector search, persistent conversation storage, and an interactive command-line interface.
 
