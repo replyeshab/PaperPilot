@@ -1,4 +1,4 @@
-/** Stores the sign-in token and small helpers used across the UI. */
+
 const TOKEN_KEY = 'paperpilot.token'
 const LAST_DOCUMENT_KEY = 'paperpilot.lastDocument'
 
@@ -14,7 +14,6 @@ export const tokenStore = {
   },
 }
 
-/** Remembers which document was open, so a reload returns to the same conversation. */
 export const lastDocument = {
   get(): string | null {
     try { return window.localStorage.getItem(LAST_DOCUMENT_KEY) } catch { return null }
