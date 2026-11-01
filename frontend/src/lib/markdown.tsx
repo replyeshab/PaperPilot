@@ -1,10 +1,6 @@
 import { Fragment, type ReactNode } from 'react'
 
-/**
- * A deliberately small Markdown renderer for assistant answers: headings, paragraphs,
- * bullet and numbered lists, fenced code, **bold**, *italic* and `inline code`.
- * It builds React elements directly, so no HTML from the model is ever injected.
- */
+
 
 const BLOCK_START = /^(```|#{1,3}\s|[-*•]\s+|\d+[.)]\s+)/
 
