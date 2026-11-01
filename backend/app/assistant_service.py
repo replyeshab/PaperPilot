@@ -1,9 +1,4 @@
-"""Question answering over PDFs using Phidata, Groq and PostgreSQL + pgvector.
 
-Heavy objects (the LLM client, the storage layer, the embedder and each document's
-vector knowledge base) are created once per process and reused. Documents and
-uploaded PDF bytes live in the database, so nothing depends on local disk.
-"""
 from __future__ import annotations
 
 import logging
@@ -101,7 +96,7 @@ def _get_embedder() -> Any:
                     if self._client is None:
                         self._client = TextEmbedding(model_name=self.model)
 
-                    # FastEmbed expects an iterable of texts, not a bare string.
+
                     vector = next(self._client.embed([text]))
                     if hasattr(vector, "tolist"):
                         vector = vector.tolist()
@@ -178,7 +173,7 @@ def index_document(document_id: str) -> None:
                 knowledge_base = _build_knowledge_base(document_id, local_path=temp_path, url=None)
             else:
                 knowledge_base = _build_knowledge_base(document_id, local_path=None, url=document["source_label"])
-            # recreate=False keeps existing vectors, so a restart does not re-embed everything.
+            
             knowledge_base.load(recreate=False)
         except AssistantUnavailable:
             raise
@@ -240,8 +235,7 @@ def _run_once(question: str, document_id: str, user_id: str, run_id: str | None)
         llm=_get_model(),
         show_tool_calls=False,
         search_knowledge=True,
-        # Put recent turns directly into the prompt. Relying on the model to call a
-        # history tool makes short follow-ups ("And tom yum?") lose their context.
+      
         add_chat_history_to_messages=True,
         num_history_messages=8,
     )
@@ -257,7 +251,7 @@ def ask_assistant(question: str, document_id: str, user_id: str, run_id: str | N
         raise
     except Exception as exc:
         if run_id:
-            # A stale conversation should not block the user: start a fresh run once.
+            
             logger.warning("Could not resume run %s; starting a new one", run_id, exc_info=True)
             try:
                 return _run_once(question, document_id, user_id, None)
