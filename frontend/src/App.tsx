@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
 import { Activity, ArrowDown, ArrowUp, BookOpen, Check, ChevronDown, CircleHelp, FileText, FileUp, Globe, LoaderCircle, MessageSquare, MoreHorizontal, Plus, Search, Send, Settings2, ShieldCheck, Sparkles, Trash2, X, Zap } from 'lucide-react'
-import { api, type ChatMessage, type DocumentItem } from './services/api'
+import { api, type ChatMessage, type DocumentItem } from './services/api.ts'
 
 const suggestions = [
   { icon: BookOpen, title: 'Summarize this document', sub: 'Get the key ideas in seconds' },
