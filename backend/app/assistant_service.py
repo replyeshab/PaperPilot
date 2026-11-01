@@ -77,10 +77,35 @@ def _get_embedder() -> Any:
             if settings.embedding_model:
                 options["model"] = settings.embedding_model
             _embedder = OpenAIEmbedder(**options)
-        elif provider == "fastembed":
-            from phi.embedder.fastembed import FastEmbedEmbedder
-            options = {"model": settings.embedding_model} if settings.embedding_model else {}
-            _embedder = FastEmbedEmbedder(**options)
+            elif provider == "fastembed":
+                from phi.embedder.fastembed import FastEmbedEmbedder
+                from fastembed import TextEmbedding
+                from pydantic import PrivateAttr
+
+                class SafeFastEmbedEmbedder(FastEmbedEmbedder):
+                    _client: Any = PrivateAttr(default=None)
+
+                def get_embedding(self, text: str) -> list[float]:
+                    if self._client is None:
+                        self._client = TextEmbedding(
+                            model_name=self.model
+                        )
+
+                    # Pass one complete text, not a string iterable.
+                    vector = next(self._client.embed([text]))
+
+                    # Convert the single vector into a flat Python list.
+                    if hasattr(vector, "tolist"):
+                        vector = vector.tolist()
+
+                    return [float(value) for value in vector]
+
+                options = (
+                    {"model": settings.embedding_model}
+                    if settings.embedding_model
+                    else {}
+            )
+            _embedder = SafeFastEmbedEmbedder(**options)
         else:
             raise AssistantUnavailable(f"Unknown EMBEDDER '{settings.embedder}'. Use auto, openai or fastembed.")
     except ImportError as exc:
