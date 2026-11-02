@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     assistant_table: str = "pdf_assistant"
 
     # Shared, lifetime budget for paid calls (questions and document additions), across all users.
-    request_limit: int = 25
+    request_limit: int = 35
 
     session_ttl_days: int = 30
     login_max_failures: int = 10
