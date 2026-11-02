@@ -10,6 +10,7 @@ export type DocumentItem = {
   shared: boolean
   created_at: string
   index_status: 'indexing' | 'ready' | 'error'
+  index_error?: string | null
 }
 export type Quota = { used: number; limit: number; remaining: number }
 export type ChatResult = { answer: string; conversation_id: string; document_id: string; quota: Quota }
