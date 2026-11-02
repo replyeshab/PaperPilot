@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { ChevronDown, FileText, X } from 'lucide-react'
+import { Analytics } from '@vercel/analytics/react'
 import { AddDocumentModal } from './components/AddDocumentModal'
 import { AuthScreen } from './components/AuthScreen'
 import { Composer } from './components/Composer'
@@ -364,6 +365,7 @@ export default function App() {
       {showAdd && (
         <AddDocumentModal busy={adding} onClose={() => setShowAdd(false)} onAddUrl={addUrl} onUpload={uploadFile} />
       )}
+      <Analytics />
     </div>
   )
 }
