@@ -4,7 +4,7 @@
 
 PaperPilot lets you build a personal document library, choose the PDF you want to discuss, and ask questions grounded in its content. It combines retrieval-augmented generation (RAG) with per-document conversations, so answers are based on passages retrieved from the selected PDF. 
 
-Demo[https://paper-pilot-ss9w-ten.vercel.app/]
+Demo : https://paper-pilot-ss9w-ten.vercel.app/
 
 ## What it does
 
