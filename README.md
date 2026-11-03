@@ -2,7 +2,7 @@
 
 **A focused AI reading workspace for asking questions about PDFs.**
 
-PaperPilot lets you build a personal document library, choose the PDF you want to discuss, and ask questions grounded in its content. It combines retrieval-augmented generation (RAG) with per-document conversations, so answers are based on passages retrieved from the selected PDF.
+PaperPilot lets you build a personal document library, choose the PDF you want to discuss, and ask questions grounded in its content. It combines retrieval-augmented generation (RAG) with per-document conversations, so answers are based on passages retrieved from the selected PDF. Demo[https://paper-pilot-ss9w-ten.vercel.app/]
 
 ## What it does
 
@@ -55,7 +55,7 @@ You’ll need Docker Compose and a Groq API key.
    docker compose up --build
    ```
 
-4. Open [http://localhost:8080](http://localhost:8080). Video deployed Demo[https://paper-pilot-ss9w-ten.vercel.app/]
+4. Open [http://localhost:8080](http://localhost:8080).
 
 OpenAI embeddings are optional. With `EMBEDDER=auto`, PaperPilot uses OpenAI embeddings when `OPENAI_API_KEY` is configured; otherwise it uses FastEmbed. The Groq API is still used to generate answers.
 
