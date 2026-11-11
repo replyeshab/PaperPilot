@@ -57,8 +57,6 @@ You’ll need Docker Compose and a Groq API key.
    docker compose up --build
    ```
 
-4. Open [http://localhost:8080](http://localhost:8080).
-
 OpenAI embeddings are optional. With `EMBEDDER=auto`, PaperPilot uses OpenAI embeddings when `OPENAI_API_KEY` is configured; otherwise it uses FastEmbed. The Groq API is still used to generate answers.
 
 ## Supported documents and current limits
